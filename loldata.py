@@ -13,9 +13,11 @@ class NewUser:
         self.region = constants.regions[region]
         self.region_op_gg = region
         self.summoner_info = self.get_summoner_info()
+        #print(self.summoner_info)
         self.ID = self.summoner_info["id"]
         print(self.ID)
         self.league_info = self.get_summoner_league_info()
+        #print(self.league_info)
         self.champions_info = self.get_summoner_champions_info()
         #print(self.champions_info)
         self.all_masteries = self.get_masteries_info()
