@@ -7,7 +7,7 @@ from time import sleep
 
 class NewUser:
 
-    def __init__(self, api_key, summoner, region):
+    def __init__(self, summoner, region, api_key = constants.api_key):
         self.api_key = api_key
         self.summoner = summoner
         self.region = constants.regions[region]
@@ -15,8 +15,10 @@ class NewUser:
         self.summoner_info = self.get_summoner_info()
         self.ID = self.summoner_info["id"]
         print(self.ID)
-        self.summoner_league_info = self.get_summoner_league_info()
-        self.summoner_champion_info = self.get_summoner_champion_info()
+        self.league_info = self.get_summoner_league_info()
+        self.champions_info = self.get_summoner_champions_info()
+        #print(self.champions_info)
+        self.all_masteries = self.get_masteries_info()
         self.driver = None
         self.options = None
         self.mmr = None
@@ -29,7 +31,11 @@ class NewUser:
         return requests.get(constants.urls["league"].format(
                             self.region, self.ID, self.api_key)).json()
 
-    def get_summoner_champion_info(self):
+    def get_masteries_info(self):
+        return requests.get(constants.urls["mastery"].format(
+                            self.region, self.ID, self.api_key)).json()
+
+    def get_summoner_champions_info(self):
         return requests.get(constants.urls["champions"].format(
                             self.region, self.ID, self.api_key)).json()
 
@@ -63,6 +69,5 @@ class NewUser:
         return self.mmr
 
 if __name__ == "__main__":
-    user = NewUser(constants.api_key, "binq661", "eune")
+    user = NewUser("binq661", "eune")
     #user.get_mmr_from_opgg()
-    print(user)

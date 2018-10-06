@@ -4,6 +4,7 @@ urls = {
     "summoner_id": "https://{}.api.riotgames.com/lol/summoner/v3/summoners/by-name/{}?api_key={}",
     "league": "https://{}.api.riotgames.com/lol/league/v3/positions/by-summoner/{}?api_key={}",
     "champions": "https://{}.api.riotgames.com/lol/champion-mastery/v3/champion-masteries/by-summoner/{}?api_key={}",
+    "mastery": "https://{}.api.riotgames.com/lol/champion-mastery/v3/scores/by-summoner/{}?api_key={}",
     "opgg": "http://{}.op.gg/summoner/userName={}",
 }
 
