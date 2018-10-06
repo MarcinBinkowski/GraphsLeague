@@ -1,6 +1,10 @@
+api_key = "RGAPI-6cf3057e-f4fb-4eb1-9fc6-af707a0a044a"
+
 urls = {
     "summoner_id": "https://{}.api.riotgames.com/lol/summoner/v3/summoners/by-name/{}?api_key={}",
-    "league": "https://{}.api.riotgames.com/lol/league/v3/positions/by-summoner/{}?api_key={}"
+    "league": "https://{}.api.riotgames.com/lol/league/v3/positions/by-summoner/{}?api_key={}",
+    "champions": "https://{}.api.riotgames.com/lol/champion-mastery/v3/champion-masteries/by-summoner/{}?api_key={}",
+    "opgg": "http://{}.op.gg/summoner/userName={}",
 }
 
 regions = {
@@ -13,6 +17,7 @@ regions = {
     "eune": "eun1",
     "euw": "euw1",
     "tr": "tr1",
-    "la1": "la1",
-    "la2": "la2"
+    "lan": "la1",
+    "las": "la2",
+    "pbe": "pbe1"
 }
