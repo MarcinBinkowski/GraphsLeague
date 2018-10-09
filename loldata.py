@@ -9,21 +9,24 @@ class NewUser:
 
     def __init__(self, summoner, region, api_key=constants.api_key):
         self.api_key = api_key
-        self.summoner = summoner
+
+        self.summoner = summoner  # summoner name
         self.region = constants.regions[region]
         self.region_op_gg = region
         self.summoner_info = self.get_summoner_info()
-        #print(self.summoner_info)
         self.ID = self.summoner_info["id"]
         print(self.ID)
         self.league_info = self.get_summoner_league_info()
-        #print(self.league_info)
         self.champions_info = self.get_summoner_champions_info()
-        #print(self.champions_info)
         self.all_masteries = self.get_masteries_info()
+        self.mmr = None
+        self.best_three_champions = None
+        self.least_played_champion = None
+
+
         self.driver = None
         self.options = None
-        self.mmr = None
+
 
     def get_summoner_info(self):
         """ Get summoner info json using his nickname"""
@@ -75,6 +78,10 @@ class NewUser:
         self.driver.close()
         return self.mmr
 
+    def get_all_modified_data(self):
+        pass
+
 if __name__ == "__main__":
     user = NewUser("binq661", "eune")
+    print(user.best_three_champions)
     #user.get_mmr_from_opgg()

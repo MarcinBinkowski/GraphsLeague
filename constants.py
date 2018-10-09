@@ -1,3 +1,5 @@
+import requests
+
 api_key = "RGAPI-68c8e6a6-fef0-4efb-9ade-8219517c5830"
 
 urls = {
@@ -22,3 +24,5 @@ regions = {
     "las": "la2",
     "pbe": "pbe1"
 }
+
+all_about_champions_json = requests.get("http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json").json()

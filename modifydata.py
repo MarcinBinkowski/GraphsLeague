@@ -1,13 +1,12 @@
 from loldata import NewUser
-
+import constants
 
 def modify_masteries_data(summoner):
     """
-    This function takes summoner object, returns all_masteries (total number of masteries),
+    This function takes summoner object, returns
     list of three tuples consisting three top played champions (champion id, total points)
      and list containing tuple of least played champion id and points(champion id, total points)
     """
-    all_masteries = summoner.all_masteries  # total number of masteries
     masteries_list = []  # declaring list
 
     for i in range(len(summoner.champions_info)):  # for each champion in champions_info json
@@ -18,7 +17,14 @@ def modify_masteries_data(summoner):
     masteries_list.sort(key=lambda item: (item[1], item[0]), reverse=True)  # sort list with using second argument(points)
     three_most_played_champions = masteries_list[:3]  # get 3 most played champions from list
     least_played_champion = masteries_list[-1:]   # get last element from list (least played champion)
-    return all_masteries, three_most_played_champions, least_played_champion  # return tuple
+    return three_most_played_champions, least_played_champion  # return tuple
+
+def get_champion_name(id):
+    """
+    This function takes id of champion and return its full name.
+    """
+    for i in range (len(constants.all_about_champions_json)):
+       print(i)
 
 
 def top_three_champions_who_can_earn_chests(summoner):
@@ -55,4 +61,5 @@ if __name__ == "__main__":
     my_summoner = NewUser("binq661", "eune")
     modify_masteries_data(my_summoner)
     top_three_champions_who_can_earn_chests(my_summoner)
+    get_champion_name("51")
     print(win_rate(my_summoner))
