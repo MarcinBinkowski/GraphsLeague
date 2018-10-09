@@ -1,4 +1,4 @@
-api_key = "RGAPI-6cf3057e-f4fb-4eb1-9fc6-af707a0a044a"
+api_key = "RGAPI-68c8e6a6-fef0-4efb-9ade-8219517c5830"
 
 urls = {
     "summoner_id": "https://{}.api.riotgames.com/lol/summoner/v3/summoners/by-name/{}?api_key={}",

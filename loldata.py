@@ -7,7 +7,7 @@ from time import sleep
 
 class NewUser:
 
-    def __init__(self, summoner, region, api_key = constants.api_key):
+    def __init__(self, summoner, region, api_key=constants.api_key):
         self.api_key = api_key
         self.summoner = summoner
         self.region = constants.regions[region]
@@ -26,22 +26,27 @@ class NewUser:
         self.mmr = None
 
     def get_summoner_info(self):
+        """ Get summoner info json using his nickname"""
         return requests.get(constants.urls["summoner_id"].format(
                             self.region, self.summoner, self.api_key)).json()
 
     def get_summoner_league_info(self):
+        """ Get info about summoners league json"""
         return requests.get(constants.urls["league"].format(
                             self.region, self.ID, self.api_key)).json()
 
     def get_masteries_info(self):
+        """ Get info about all champions masteries json"""
         return requests.get(constants.urls["mastery"].format(
                             self.region, self.ID, self.api_key)).json()
 
     def get_summoner_champions_info(self):
+        """ Get info about all champions json"""
         return requests.get(constants.urls["champions"].format(
                             self.region, self.ID, self.api_key)).json()
 
     def get_mmr_from_opgg(self):
+        """ Get mmr from op.gg using selenium"""
         self.options = Options()
         self.options.add_argument("--headless")
         self.driver = webdriver.Chrome(chrome_options=self.options)
