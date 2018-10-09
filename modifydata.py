@@ -1,5 +1,4 @@
 from loldata import NewUser
-import constants
 
 def modify_masteries_data(summoner):
     """
@@ -19,12 +18,17 @@ def modify_masteries_data(summoner):
     least_played_champion = masteries_list[-1:]   # get last element from list (least played champion)
     return three_most_played_champions, least_played_champion  # return tuple
 
-def get_champion_name(id):
+
+def get_all_champs_score(summoner):
     """
-    This function takes id of champion and return its full name.
+    This function returnes summed up points of all champions
     """
-    for i in range (len(constants.all_about_champions_json)):
-       print(i)
+    answer = 0
+
+    for i in range(len(summoner.champions_info)):  # for each champion in champions_info json
+        champion_points = summoner.champions_info[i]["championPoints"]  # get champion points
+        answer += int(champion_points)
+    return answer
 
 
 def top_three_champions_who_can_earn_chests(summoner):
@@ -61,5 +65,4 @@ if __name__ == "__main__":
     my_summoner = NewUser("binq661", "eune")
     modify_masteries_data(my_summoner)
     top_three_champions_who_can_earn_chests(my_summoner)
-    get_champion_name("51")
-    print(win_rate(my_summoner))
+    get_all_champs_score(my_summoner)
