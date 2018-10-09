@@ -49,7 +49,7 @@ def champions_distribiution_graph(graph_data):
     my_circle = plt.Circle((0, 0), 0.7, color='white')
     p = plt.gcf()
     p.gca().add_artist(my_circle)
-    plt.savefig('{}_mastery_distribution.png'.format(gaph_data.summoner.summoner), transparent=False)
+    plt.savefig('{}_mastery_distribution.png'.format(gaph_data.summoner.summoner), transparent=True)
 
 if __name__ == "__main__":
     gaph_data = GraphData(NewUser("binq661", "eune"))
