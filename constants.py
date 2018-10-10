@@ -1,6 +1,6 @@
 import requests
 
-api_key = "RGAPI-68c8e6a6-fef0-4efb-9ade-8219517c5830"
+api_key = "RGAPI-660e2555-0e73-4b42-9169-1f9fb1ff0679"
 
 urls = {
     "summoner_id": "https://{}.api.riotgames.com/lol/summoner/v3/summoners/by-name/{}?api_key={}",

@@ -2,18 +2,7 @@ from fpdf import FPDF
 import requests
 import constants
 
-def generate_raport(name, rank_solo, rank_flex, icon_id, server, lvl, top_champs, chest_champs):
-    icon = requests.get("http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/{}.png".format(icon_id))
-    if icon.status_code == 200:
-        with open("src/temporary/icon.png", 'wb') as f:
-            f.write(icon.content)
-
-    for i in range(3):
-        icon = requests.get(constants.urls["icons"].format(top_champs[i]))
-        if icon.status_code == 200:
-            with open("src/temporary/top_champ{}.png".format(i+1), 'wb') as f:
-                f.write(icon.content)
-
+def generate_raport(name, rank_solo, rank_flex, server, lvl, chest_champs):
     pdf = FPDF()
     pdf.set_author("Marcin Binkowski")
     pdf.add_page()

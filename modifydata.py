@@ -30,7 +30,6 @@ def get_all_champs_score(summoner):
         answer += int(champion_points)
     return answer
 
-
 def top_three_champions_who_can_earn_chests(summoner):
     """
     This function takes summoner object and returns 3 most played champions summoner didn't get chest with yet
@@ -45,9 +44,6 @@ def top_three_champions_who_can_earn_chests(summoner):
     chests.sort(key=lambda item: (item[1], item[0], item[2]), reverse=True)  # sorts list by champion points
     chests = [x for x in chests if x[2] is False][:3]  # selects all champs who can earn chests and picks 3 most played
     return chests  # returns list
-
-
-
 
 def win_rate(summoner):
     """
@@ -74,3 +70,4 @@ if __name__ == "__main__":
     modify_masteries_data(my_summoner)
     top_three_champions_who_can_earn_chests(my_summoner)
     get_all_champs_score(my_summoner)
+    print(get_leagues(my_summoner))

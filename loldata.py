@@ -16,11 +16,10 @@ class NewUser:
         self.summoner_info = self.get_summoner_info()
         self.ID = self.summoner_info["id"]
         self.profile_icon_id = self.summoner_info["profileIconId"]
-        # print(self.profile_icon_id)
-        # print(self.ID)
         self.league_info = self.get_summoner_league_info()
         self.champions_info = self.get_summoner_champions_info()
         self.all_masteries = self.get_masteries_info()
+        self.lvl = 0
         self.mmr = None
 
         self.driver = None
@@ -47,6 +46,10 @@ class NewUser:
         return requests.get(constants.urls["champions"].format(
                             self.region, self.ID, self.api_key)).json()
 
+
+    ########################################################################################################
+    #                                        FUNCTION NOT USED                                             #
+    ########################################################################################################
     def get_mmr_from_opgg(self):
         """ Get mmr from op.gg using selenium"""
         self.options = Options()
@@ -76,9 +79,8 @@ class NewUser:
             self.mmr = self.driver.find_element_by_xpath("//td[@class='MMR']").text
         self.driver.close()
         return self.mmr
+    #######################################################################################################
 
-    def get_all_modified_data(self):
-        pass
 
 if __name__ == "__main__":
     user = NewUser("binq661", "eune")
