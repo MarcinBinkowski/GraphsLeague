@@ -20,15 +20,17 @@ class GraphData:
 
         self.donut_chart_data_scores = self.all_champions_score_modified + self.best_three_scores[::-1]
         self.donut_chart_data_names = ["Rest"] + self.best_three_names[::-1]
-        print(self.donut_chart_data_scores)
-        print(self.donut_chart_data_names)
+        # print(self.donut_chart_data_scores)
+        # print(self.donut_chart_data_names)
 
-    def get_champion_name(self, id):
+        self.win_data = modifydata.win_rate(summoner)
+
+    def get_champion_name(self, id_number):
         """
         This method returnes name of champion with given id
         """
         for name in constants.all_about_champions_json["data"]:
-            if constants.all_about_champions_json["data"][name]["key"] == id:
+            if constants.all_about_champions_json["data"][name]["key"] == id_number:
                 return name
 
     def get_champions_names(self, ids_list):
@@ -45,23 +47,49 @@ def champions_distribiution_graph(graph_data):
     names = graph_data.donut_chart_data_names
     scores = graph_data.donut_chart_data_scores
 
-    plt.pie(scores, labels=names, startangle=90, colors=['#ce0404', 'green', 'blue', 'purple'])
+    plt.pie(scores, labels=names, startangle=90, colors=['#ce0404', 'green', '#1a2699', 'purple'])
     my_circle = plt.Circle((0, 0), 0.7, color='white')
     p = plt.gcf()
     p.gca().add_artist(my_circle)
-    plt.savefig('{}_mastery_distribution.png'.format(gaph_data.summoner.summoner), transparent=True)
+    plt.savefig('{}_mastery_distribution.png'.format(graph_data.summoner.summoner), transparent=True)
+    plt.clf()
 
-def champions_distribiution_graph(graph_data):
-    names = graph_data.donut_chart_data_names
-    scores = graph_data.donut_chart_data_scores
 
-    plt.pie(scores, labels=names, startangle=90, colors=['#ce0404', 'green', 'blue', 'purple'])
+def solo_win_ratio_graph(graph_data):
+    wins = graph_data.win_data[0][0]
+    losses = graph_data.win_data[0][1]
+    names = ["losses: {}".format(losses), "wins: {}".format(wins)]
+    wins_lossses = [losses, wins]
+
+    plt.pie(wins_lossses, labels=names, startangle=90, colors=['#ce0404', '#1a2699'],
+            textprops={'fontsize': 14, "weight": "bold"})
     my_circle = plt.Circle((0, 0), 0.7, color='white')
     p = plt.gcf()
     p.gca().add_artist(my_circle)
-    plt.savefig('{}_mastery_distribution.png'.format(gaph_data.summoner.summoner), transparent=True)
+    plt.title("solo/duo wins",fontsize=30, weight="bold")
+    plt.text(0, 0, f"{graph_data.win_data[0][2]*100}%", fontsize=12, ha="center", va="center", size=24)
+    plt.savefig('{}_solo_duo.png'.format(graph_data.summoner.summoner), transparent=True)
+    plt.clf()
+
+def flex_win_ratio_graph(graph_data):
+    wins = graph_data.win_data[1][0]
+    losses = graph_data.win_data[1][1]
+    names = ["losses: {}".format(losses), "wins: {}".format(wins)]
+    wins_lossses = [losses, wins]
+
+    plt.pie(wins_lossses, labels=names, startangle=90, colors=['#ce0404', '#1a2699'],
+            textprops={'fontsize': 14, "weight": "bold"})
+    my_circle = plt.Circle((0, 0), 0.7, color='white')
+    p = plt.gcf()
+    p.gca().add_artist(my_circle)
+    plt.title("flex wins",fontsize=30, weight="bold")
+    plt.text(0, 0, f"{graph_data.win_data[1][2]*100}%", fontsize=12, ha="center", va="center", size=24)
+    plt.savefig('{}_flex.png'.format(graph_data.summoner.summoner), transparent=True)
+    plt.clf()
+
 
 if __name__ == "__main__":
-    gaph_data = GraphData(NewUser("binq661", "eune"))
-    champions_distribiution_graph(gaph_data)
-
+    graph_data = GraphData(NewUser("binq661", "eune"))
+    champions_distribiution_graph(graph_data)
+    solo_win_ratio_graph(graph_data)
+    flex_win_ratio_graph(graph_data)

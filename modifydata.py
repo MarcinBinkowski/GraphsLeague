@@ -51,10 +51,10 @@ def win_rate(summoner):
     """
     This function takes summoner object and returns (wins, losses, winratio) tuples for both 5v5 queues
     """
-    number_of_wins_solo_duo = summoner.league_info[1]["wins"]  # solo_duo wins
-    number_of_losses_solo_duo = summoner.league_info[1]["losses"]  # solo_duo losses
-    number_of_wins_flex = summoner.league_info[0]["wins"]  # flex wins
-    number_of_losses_flex = summoner.league_info[0]["losses"]  # flex losses
+    number_of_wins_solo_duo = summoner.league_info[0]["wins"]  # solo_duo wins
+    number_of_losses_solo_duo = summoner.league_info[0]["losses"]  # solo_duo losses
+    number_of_wins_flex = summoner.league_info[1]["wins"]  # flex wins
+    number_of_losses_flex = summoner.league_info[1]["losses"]  # flex losses
     win_rate_solo_duo = number_of_wins_solo_duo / (number_of_wins_solo_duo + number_of_losses_solo_duo)  # solo_duo winratio
     win_rate_flex = number_of_wins_flex / (number_of_wins_flex + number_of_losses_flex)  # flex winratio
     return ((number_of_wins_solo_duo, number_of_losses_solo_duo, round(win_rate_solo_duo, 2)),
