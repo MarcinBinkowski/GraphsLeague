@@ -7,7 +7,7 @@ import os
 from loldata import NewUser
 from raportgenerator import generate_raport
 import constants
-import drawgraphs
+import dataforgraphs
 
 class Main:
     """
@@ -20,7 +20,7 @@ class Main:
         self.lvl = self.summoner.lvl
         self.league_solo_duo = modifydata.get_leagues(self.summoner)[0][0].lower()
         self.league_flex = modifydata.get_leagues(self.summoner)[1][0].lower()
-        self.graph_data = drawgraphs.GraphData(self.summoner)
+        self.graph_data = dataforgraphs.GraphData(self.summoner)
         self.best_three_names = self.graph_data.best_names[:3]
         self.champs_with_chest = self.graph_data.best_with_chests_names
 
