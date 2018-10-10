@@ -8,6 +8,7 @@ urls = {
     "champions": "https://{}.api.riotgames.com/lol/champion-mastery/v3/champion-masteries/by-summoner/{}?api_key={}",
     "mastery": "https://{}.api.riotgames.com/lol/champion-mastery/v3/scores/by-summoner/{}?api_key={}",
     "opgg": "http://{}.op.gg/summoner/userName={}",
+    "icons": "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/{}.png",
 }
 
 regions = {

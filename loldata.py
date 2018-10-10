@@ -22,10 +22,6 @@ class NewUser:
         self.champions_info = self.get_summoner_champions_info()
         self.all_masteries = self.get_masteries_info()
         self.mmr = None
-        self.best_three_champions = None
-        self.least_played_champion = None
-
-
 
         self.driver = None
         self.options = None
@@ -86,5 +82,4 @@ class NewUser:
 
 if __name__ == "__main__":
     user = NewUser("binq661", "eune")
-    print(user.best_three_champions)
     #user.get_mmr_from_opgg()

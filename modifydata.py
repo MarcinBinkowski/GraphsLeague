@@ -14,9 +14,9 @@ def modify_masteries_data(summoner):
         masteries_list.append((champion_id, champion_points))  # add tuple to masteries_list
 
     masteries_list.sort(key=lambda item: (item[1], item[0]), reverse=True)  # sort list with using second argument(points)
-    three_most_played_champions = masteries_list[:3]  # get 3 most played champions from list
+    five_most_played_champions = masteries_list[:5]  # get five most played champions from list
     least_played_champion = masteries_list[-1:]   # get last element from list (least played champion)
-    return three_most_played_champions, least_played_champion  # return tuple
+    return five_most_played_champions, least_played_champion  # return tuple
 
 
 def get_all_champs_score(summoner):
@@ -47,6 +47,8 @@ def top_three_champions_who_can_earn_chests(summoner):
     return chests  # returns list
 
 
+
+
 def win_rate(summoner):
     """
     This function takes summoner object and returns (wins, losses, winratio) tuples for both 5v5 queues
@@ -59,6 +61,12 @@ def win_rate(summoner):
     win_rate_flex = number_of_wins_flex / (number_of_wins_flex + number_of_losses_flex)  # flex winratio
     return ((number_of_wins_solo_duo, number_of_losses_solo_duo, round(win_rate_solo_duo, 2)),
             (number_of_wins_flex, number_of_losses_flex, round(win_rate_flex, 2)))
+
+def get_leagues(summoner):
+    league_info = summoner.league_info
+    solo_duo_league = (league_info[0]["tier"], league_info[0]["rank"])
+    flex_league = (league_info[1]["tier"], league_info[1]["rank"])
+    return solo_duo_league,flex_league
 
 
 if __name__ == "__main__":
