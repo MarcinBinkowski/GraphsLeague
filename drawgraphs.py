@@ -51,6 +51,16 @@ def champions_distribiution_graph(graph_data):
     p.gca().add_artist(my_circle)
     plt.savefig('{}_mastery_distribution.png'.format(gaph_data.summoner.summoner), transparent=True)
 
+def champions_distribiution_graph(graph_data):
+    names = graph_data.donut_chart_data_names
+    scores = graph_data.donut_chart_data_scores
+
+    plt.pie(scores, labels=names, startangle=90, colors=['#ce0404', 'green', 'blue', 'purple'])
+    my_circle = plt.Circle((0, 0), 0.7, color='white')
+    p = plt.gcf()
+    p.gca().add_artist(my_circle)
+    plt.savefig('{}_mastery_distribution.png'.format(gaph_data.summoner.summoner), transparent=True)
+
 if __name__ == "__main__":
     gaph_data = GraphData(NewUser("binq661", "eune"))
     champions_distribiution_graph(gaph_data)

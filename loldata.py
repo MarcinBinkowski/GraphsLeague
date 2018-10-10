@@ -15,6 +15,8 @@ class NewUser:
         self.region_op_gg = region
         self.summoner_info = self.get_summoner_info()
         self.ID = self.summoner_info["id"]
+        self.profile_icon_id = self.summoner_info["profileIconId"]
+        print(self.profile_icon_id)
         print(self.ID)
         self.league_info = self.get_summoner_league_info()
         self.champions_info = self.get_summoner_champions_info()
@@ -22,6 +24,7 @@ class NewUser:
         self.mmr = None
         self.best_three_champions = None
         self.least_played_champion = None
+
 
 
         self.driver = None
