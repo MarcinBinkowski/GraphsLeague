@@ -9,14 +9,14 @@ from raportgenerator import generate_raport
 import constants
 import dataforgraphs
 
+
 class Main:
     """
     Class used to coordinate different functions from different files
     """
     def __init__(self):
-        self.nick = input("Your summoner name: ")
-        self.server = input("Server: ")
-        self.summoner = NewUser(self.nick, self.server)
+        self.make_instance_of_summoner()
+
         self.lvl = self.summoner.lvl
         self.league_solo_duo = modifydata.get_leagues(self.summoner)[0][0].lower()
         self.league_flex = modifydata.get_leagues(self.summoner)[1][0].lower()
@@ -35,10 +35,20 @@ class Main:
 
         self.remove_folder()
 
-        print("**************************")
+        print("\n**************************")
         print("Raport generated :D")
         print("Autor Marcin Binkowski, https://www.github.com/marcinbinkowski")
         print("**************************")
+
+    def make_instance_of_summoner(self):
+        self.nick = input("Your summoner name: ")
+        self.server = input("Server: ")
+        try:
+            self.summoner = NewUser(self.nick, self.server)
+        except:
+            print("Wrong data... Please try again\n")
+            self.make_instance_of_summoner()
+
 
     def champions_distribiution_graph(self):
         """
