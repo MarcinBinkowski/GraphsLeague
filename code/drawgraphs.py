@@ -1,6 +1,9 @@
-from loldata import NewUser
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import constants
 import modifydata
+
+from loldata import NewUser
 
 
 class GraphData:

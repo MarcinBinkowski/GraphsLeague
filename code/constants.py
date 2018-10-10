@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import requests
 
 api_key = "RGAPI-660e2555-0e73-4b42-9169-1f9fb1ff0679"

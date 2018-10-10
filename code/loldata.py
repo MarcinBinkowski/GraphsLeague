@@ -1,8 +1,11 @@
-import requests
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import constants
+from time import sleep
+
+import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from time import sleep
 
 
 class NewUser:
@@ -19,7 +22,7 @@ class NewUser:
         self.league_info = self.get_summoner_league_info()
         self.champions_info = self.get_summoner_champions_info()
         self.all_masteries = self.get_masteries_info()
-        self.lvl = 0
+        self.lvl = self.summoner_info["summonerLevel"]
         self.mmr = None
 
         self.driver = None
@@ -48,7 +51,7 @@ class NewUser:
 
 
     ########################################################################################################
-    #                                        FUNCTION NOT USED                                             #
+    #                            FUNCTION NOT USED BUT WIIL BE IN FUTURE                                   #
     ########################################################################################################
     def get_mmr_from_opgg(self):
         """ Get mmr from op.gg using selenium"""
@@ -84,4 +87,4 @@ class NewUser:
 
 if __name__ == "__main__":
     user = NewUser("binq661", "eune")
-    #user.get_mmr_from_opgg()
+    print(user.lvl)

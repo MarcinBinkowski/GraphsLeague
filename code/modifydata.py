@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from loldata import NewUser
 
 def modify_masteries_data(summoner):
@@ -49,20 +51,34 @@ def win_rate(summoner):
     """
     This function takes summoner object and returns (wins, losses, winratio) tuples for both 5v5 queues
     """
-    number_of_wins_solo_duo = summoner.league_info[0]["wins"]  # solo_duo wins
-    number_of_losses_solo_duo = summoner.league_info[0]["losses"]  # solo_duo losses
-    number_of_wins_flex = summoner.league_info[1]["wins"]  # flex wins
-    number_of_losses_flex = summoner.league_info[1]["losses"]  # flex losses
-    win_rate_solo_duo = number_of_wins_solo_duo / (number_of_wins_solo_duo + number_of_losses_solo_duo)  # solo_duo winratio
-    win_rate_flex = number_of_wins_flex / (number_of_wins_flex + number_of_losses_flex)  # flex winratio
-    return ((number_of_wins_solo_duo, number_of_losses_solo_duo, round(win_rate_solo_duo, 2)),
-            (number_of_wins_flex, number_of_losses_flex, round(win_rate_flex, 2)))
+    to_return = []
+    try:
+        number_of_wins_solo_duo = summoner.league_info[0]["wins"]  # solo_duo wins
+        number_of_losses_solo_duo = summoner.league_info[0]["losses"]  # solo_duo losses
+        win_rate_solo_duo = number_of_wins_solo_duo / (number_of_wins_solo_duo + number_of_losses_solo_duo)  # solo_duo winratio
+        to_return = [(number_of_wins_solo_duo, number_of_losses_solo_duo, round(win_rate_solo_duo, 2))]
+    except:
+        pass
+    try:
+        number_of_wins_flex = summoner.league_info[1]["wins"]  # flex wins
+        number_of_losses_flex = summoner.league_info[1]["losses"]  # flex losses
+        win_rate_flex = number_of_wins_flex / (number_of_wins_flex + number_of_losses_flex)  # flex winratio
+        to_return.append((number_of_wins_flex, number_of_losses_flex, round(win_rate_flex, 2)))
+    except:
+        pass
+    return to_return
 
 def get_leagues(summoner):
     league_info = summoner.league_info
-    solo_duo_league = (league_info[0]["tier"], league_info[0]["rank"])
-    flex_league = (league_info[1]["tier"], league_info[1]["rank"])
-    return solo_duo_league,flex_league
+    try:
+        solo_duo_league = (league_info[0]["tier"], league_info[0]["rank"])
+    except:
+        solo_duo_league = "p"
+    try:
+        flex_league = (league_info[1]["tier"], league_info[1]["rank"])
+    except:
+        flex_league = "p"
+    return solo_duo_league, flex_league
 
 
 if __name__ == "__main__":
@@ -70,4 +86,4 @@ if __name__ == "__main__":
     modify_masteries_data(my_summoner)
     top_three_champions_who_can_earn_chests(my_summoner)
     get_all_champs_score(my_summoner)
-    print(get_leagues(my_summoner))
+
